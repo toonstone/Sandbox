@@ -11,22 +11,33 @@ namespace MyFirstCoreWebAPI.Controllers
     {
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        [Produces(typeof(IEnumerable<Value>))]
+        public IEnumerable<Value> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new Value[] {
+                new Value { Id = 1, Text = "FirstOne" },
+                new Value { Id = 2, Text = "SecondOne" }};
         }
 
         // GET api/values/5
-        [HttpGet("{id:int}")]
-        public string Get(int id)
+        /// <summary>
+        /// THis is somestuff
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("{id:int}")]        
+        public Value Get(int id)
         {
-            return $"value = {id}";
+            return new Value { Id = id, Text = "On its own" };
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        [Produces(typeof(Value))]
+        public IActionResult Post([FromBody]Value value)
         {
+            // return 201, location header URI of created object and the object itself            
+            return this.CreatedAtAction(nameof(this.Get), new { id = value.Id }, value);
         }
 
         // PUT api/values/5
@@ -43,9 +54,9 @@ namespace MyFirstCoreWebAPI.Controllers
 
         public class Value
         {
-            public int ID { get; set; }
+            public int Id { get; set; }
 
-            public string MyProperty { get; set; }
+            public string Text { get; set; }
         }
     }
 }
