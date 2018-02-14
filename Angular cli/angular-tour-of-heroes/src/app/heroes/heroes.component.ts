@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
-import { HEROES } from '../mock-heroes';
+import { HeroService } from '../services/hero.service';
 
 @Component({
   selector: 'app-heroes',
@@ -10,15 +10,23 @@ import { HEROES } from '../mock-heroes';
 export class HeroesComponent implements OnInit {
 
   selectedHero: Hero;
-  heroes = HEROES; // this is a const
+  heroes: Hero[];
 
-  constructor() { }
+  // Reserve the constructor for simple initialization such as wiring constructor parameters to properties.
+  constructor(private heroService: HeroService) { }
 
-  ngOnInit() {}
+  // use this to makes HTTP requests to a remote server as a real data service would to retrieve data etc.
+  ngOnInit() {
+    this.getHeroes();
+  }
 
   // using arrow functions
   onSelect = (hero: Hero) => {
     this.selectedHero = hero;
+  }
+
+  getHeroes = () => {
+    this.heroes = this.heroService.getHeroes();
   }
 
   // onSelect(hero: Hero): void {
