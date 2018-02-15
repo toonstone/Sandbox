@@ -52,7 +52,7 @@
                                 [style.margin.px]='imageMargin'/>
                         </td>                        
                         <td>{{ product.productName}}</td>
-                        <td>{{ product.productCode | lowercase | convertToSpaces}}</td>
+                        <td>{{ product.productCode | lowercase | convertToSpaces: '-'}}</td>
                         <td>{{ product.releaseDate}}</td>
                         <!-- display pounds using the currency pipe -->
                         <td>{{ product.price | currency:'GBP':true:'1.2-2'}}</td>
