@@ -15,11 +15,11 @@ export class MessageService {
     this.messages = [];
   }
 
-  // getMessages = (): string[] => {
-  //   return this.messages;
-  // }
-
-  getMessages(): string[] {
+  getMessages = (): string[] => {
     return this.messages;
   }
+
+  // getMessages(): string[] {
+  //   return this.messages;
+  // }
 }
