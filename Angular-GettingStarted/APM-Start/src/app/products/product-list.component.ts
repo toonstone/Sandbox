@@ -59,7 +59,7 @@ export class ProductListComponent
 
     // mock last know search string
     listFilter: string = 'cart';
-    
+
     // You have to overload the ngOnInit function. This doesn't work with arrow functions.
     // While a normal function declaration creates the ngOnInit property on the prototype, an arrow function creates it on the instance.
     // Angular itself looks only for the hooks on the prototype. which is why your original approach doesn't work as expected.
