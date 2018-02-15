@@ -1,14 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { IProduct } from './product';
 
 @Component({
     selector: 'pm-products',
+    styleUrls: ['./product-list.component.css'],
     templateUrl: './products-list.component.html'
 })
-export class ProductListComponent {
+export class ProductListComponent
+    implements OnInit {
+
     pageTitle: string = 'Product List';
     imageWidth: number = 50;
     imageMargin: number = 2;
-    products: any[] = [
+    products: IProduct[] = [
         {
             'productId': 1,
             'productName': 'Leaf Rake',
@@ -55,8 +59,15 @@ export class ProductListComponent {
 
     // mock last know search string
     listFilter: string = 'cart';
+    
+    // You have to overload the ngOnInit function. This doesn't work with arrow functions.
+    // While a normal function declaration creates the ngOnInit property on the prototype, an arrow function creates it on the instance.
+    // Angular itself looks only for the hooks on the prototype. which is why your original approach doesn't work as expected.
+    ngOnInit() {
+        console.log('called ngOnInit');
+    }
 
     toggleImage = () => {
         this.showImage = !this.showImage;
-    }    
+    }
 }
