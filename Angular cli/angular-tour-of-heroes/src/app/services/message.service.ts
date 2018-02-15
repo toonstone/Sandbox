@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class MessageService {
 
-  messages: string[] = [];
+  private messages: string[] = [];
 
   constructor() { }
 
@@ -13,5 +13,13 @@ export class MessageService {
 
   clear = () => {
     this.messages = [];
+  }
+
+  // getMessages = (): string[] => {
+  //   return this.messages;
+  // }
+
+  getMessages(): string[] {
+    return this.messages;
   }
 }

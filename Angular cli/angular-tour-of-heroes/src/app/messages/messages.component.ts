@@ -8,20 +8,22 @@ import { MessageService } from '../services/message.service';
 })
 export class MessagesComponent implements OnInit {
 
-  isMessages: boolean;
-
   messages: string[];
+
+  isMessages = (): boolean => {
+    return this.messages.length > 0;
+  }
 
   // The messageService property must be public as it is bound in the template.
   constructor(private messageService: MessageService) {
   }
 
   ngOnInit() {
-    this.isMessages = this.messageService.messages.length > 0;
-    this.messages = this.messageService.messages;
+    this.messages = this.messageService.getMessages();
   }
 
   clear = () => {
+    this.messages = [];
     this.messageService.clear();
   }
 
