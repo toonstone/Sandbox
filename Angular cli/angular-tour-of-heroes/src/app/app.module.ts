@@ -13,7 +13,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 // these two statements are needed for the in-memory web-api
-import { HttpClientInMemoryWebApiModule  } from 'angular-in-memory-web-api';
+import { HttpClientInMemoryWebApiModule, InMemoryWebApiModule  } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './services/in-memory-data.service';
 
 @NgModule({
@@ -27,10 +27,10 @@ import { InMemoryDataService } from './services/in-memory-data.service';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule,
     HttpClientModule,
     // needs  to be after HttpClientModule tell it which InMemory class to use
-    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false })
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
+    AppRoutingModule
   ],
   providers: [
     HeroService,
