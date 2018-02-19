@@ -23,7 +23,7 @@ export class HeroService {
 
   getHeroes = (): Observable<Hero[]> => {
 
-    // RxJS
+    // .pipes are RxJS 5.5 see https://blog.hackages.io/rxjs-5-5-piping-all-the-things-9d469d1b3f44
     return this.http.get<Hero[]>(this.heroesUrl)
       .pipe(
         tap(_ => this.logMessage('fetching all heroes')),
@@ -70,6 +70,18 @@ export class HeroService {
         tap(_ => this.logMessage(`deleting hero id=${id}`)),
         catchError(this.handleError<Hero>('Deleting Hero'))
       );
+  }
+
+  searchHeroes = (term: string): Observable<Hero[]> => {
+    
+    if (!term.trim()) {
+        return of([]);
+    }
+
+    return this.http.get<Hero[]>(`api/heroes/?name=${term}`).pipe(
+      tap(_ => this.logMessage(`found heroes matching ${term}`)),
+      catchError(this.handleError<Hero[]>('searchHeroes', []))
+    );
   }
 
   private logMessage = (message: string) => this.messageService.add(message);

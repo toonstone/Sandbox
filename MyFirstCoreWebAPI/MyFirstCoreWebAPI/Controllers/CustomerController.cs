@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BusinessServices;
-using Domain;
+using DomainModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,9 +13,9 @@ namespace MyFirstCoreWebAPI.Controllers
     [Route("api/Customer")]
     public class CustomerController : Controller
     {
-        private ITestDIService _testDIService;
+        private ICustomerService _testDIService;
 
-        public CustomerController(ITestDIService testDIService)
+        public CustomerController(ICustomerService testDIService)
         {
             this._testDIService = testDIService;
         }

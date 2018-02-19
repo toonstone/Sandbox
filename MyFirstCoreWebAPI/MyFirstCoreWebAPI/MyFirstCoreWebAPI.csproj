@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="ViewModels\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
@@ -21,7 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BusinessServices\BusinessServices.csproj" />
-    <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\Domain\DomainModels.csproj" />
   </ItemGroup>
 
 </Project>
