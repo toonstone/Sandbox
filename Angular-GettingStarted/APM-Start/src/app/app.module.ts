@@ -9,11 +9,8 @@ import { ConvertToSpacesPipe } from './shared/convert-to-spaces';
 import { StarComponent } from './shared/star.component';
 import { ProductService } from './products/product.service';
 import { HttpClientModule } from '@angular/common/http';
-<<<<<<< HEAD
-=======
-import { ProductDetailComponent } from './products/product-detail.component';
 import { WelcomeComponent } from './home/welcome.component';
->>>>>>> master
+import { ProductDetailComponent } from './products/product-detail.component';
 
 @NgModule({
   declarations: [
