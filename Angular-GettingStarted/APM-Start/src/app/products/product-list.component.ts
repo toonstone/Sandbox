@@ -17,6 +17,8 @@ export class ProductListComponent
     imageWidth: number = 50;
     imageMargin: number = 2;
 
+    errorMessage: string;
+
     // mock last know search string
     private _listFilter: string;
 
@@ -41,9 +43,10 @@ export class ProductListComponent
     ngOnInit() {
         console.log('called ngOnInit');
 
-        this.products = this.productService.getProducts();
-        this._listFilter = 'cart';
-        this.listFilter = this._listFilter;
+        this.productService.getProducts()
+            .subscribe(
+                productsValue => this.setProducts(productsValue),
+                error => this.errorMessage = <any>error);        
     }
 
     toggleImage = () => {
@@ -54,5 +57,11 @@ export class ProductListComponent
         filterBy = filterBy.toLocaleLowerCase();
         return this.products.filter((product: IProduct) =>
             product.productName.toLocaleLowerCase().indexOf(filterBy) !== -1);
+    }
+
+    setProducts = (products: IProduct[]) => {
+        this.products = products;
+        this._listFilter = 'cart';
+        this.listFilter = this._listFilter;
     }
 }
