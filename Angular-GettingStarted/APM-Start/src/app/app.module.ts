@@ -11,6 +11,7 @@ import { ProductService } from './products/product.service';
 import { HttpClientModule } from '@angular/common/http';
 import { WelcomeComponent } from './home/welcome.component';
 import { ProductDetailComponent } from './products/product-detail.component';
+import { ProductGuardService } from './products/product-guard.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,9 @@ import { ProductDetailComponent } from './products/product-detail.component';
     HttpClientModule,
     RouterModule.forRoot([
       { path: 'products', component: ProductListComponent},
-      { path: 'products/:id', component: ProductDetailComponent},
+      { path: 'products/:id', 
+        canActivate: [ ProductGuardService ], // added guard as to whether navigation can occur here if id > 0 and !NaN
+        component: ProductDetailComponent},
       { path: 'welcome', component: WelcomeComponent},
       { path: '', redirectTo: 'welcome', pathMatch: 'full'},
       { path: '**', redirectTo: 'welcome', pathMatch: 'full'} // ** is wildcard useful for 404
@@ -35,7 +38,8 @@ import { ProductDetailComponent } from './products/product-detail.component';
     // RouterModule.forRoot([], { useHash: true}) // if need hash routing
   ],
   providers: [
-    ProductService
+    ProductService,
+    ProductGuardService
   ],
   bootstrap: [AppComponent]
 })
