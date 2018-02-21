@@ -51,7 +51,10 @@
                                 [style.width.px]='imageWidth'
                                 [style.margin.px]='imageMargin'/>
                         </td>                        
-                        <td>{{ product.productName}}</td>
+                        <td>
+                            <a [routerLink]="['/products', product.productId]">{{ product.productName}}</a>
+                            <!-- <a routerLink="/products/{{product.productId}}">{{ product.productName}}</a> ALTERNATIVE-->
+                        </td>
                         <td>{{ product.productCode | lowercase | convertToSpaces: '-'}}</td>
                         <td>{{ product.releaseDate}}</td>
                         <!-- display pounds using the currency pipe -->

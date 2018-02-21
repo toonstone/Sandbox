@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { IProduct } from './product';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { catchError, tap} from 'rxjs/operators';
+import { catchError, tap, find, elementAt, map, filter, switchMap, first, mergeAll, mergeMap} from 'rxjs/operators';
+import { ReturnStatement } from '@angular/compiler';
 // import 'rxjs/add/observable/throw';
 // import 'rxjs/add/operator/catch';
 // import 'rxjs/add/operator/do';
@@ -33,6 +34,15 @@ export class ProductService {
                 stringifyProducts,
                 catchError(this.handleError)
             );
+    }
+
+    getProduct(id: number): any {
+        
+        return this.getProducts().pipe(                 
+             mergeMap(products => (<IProduct[]>products)),                      
+             first(product => (<IProduct>product).productId === id),
+             tap(data => {console.log('tapping...'); console.log(data); })            
+        );
     }
 
     handleError = (err: HttpErrorResponse) => {
