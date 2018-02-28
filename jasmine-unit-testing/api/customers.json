@@ -1,0 +1,17 @@
+[
+    {
+        "firstName": "John",
+        "surName": "Smith",
+        "dob": "1990/01/01"
+    },
+    {
+        "firstName": "Bobby",
+        "surName": "Brown",
+        "dob": "1995/01/01"
+    },
+    {
+        "firstName": "Stephen",
+        "surName": "Wilkins",
+        "dob": "1989/05/05"
+    }
+]
